@@ -18,7 +18,7 @@ android {
 	namespace = 'org.koitharu.kotatsu'
 
 	defaultConfig {
-		applicationId 'org.koitharu.kotatsu'
+		applicationId 'org.koitharu.kotatsu.fork'
 		minSdk = 23
 		targetSdk = 36
 		versionCode = 1033
@@ -184,16 +184,13 @@ dependencies {
 	implementation libs.ssiv
 	implementation libs.disk.lru.cache
 	implementation libs.markwon
-	implementation libs.kizzyrpc
 
-	implementation libs.acra.http
-	implementation libs.acra.dialog
+
 
 	implementation libs.conscrypt.android
 
 	debugImplementation libs.leakcanary.android
 	nightlyImplementation libs.leakcanary.android
-	debugImplementation libs.workinspector
 
 	testImplementation libs.junit
 	testImplementation libs.json

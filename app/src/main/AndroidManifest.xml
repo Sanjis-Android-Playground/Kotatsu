@@ -265,9 +265,7 @@
 		<activity
 			android:name="org.koitharu.kotatsu.alternatives.ui.AlternativesActivity"
 			android:label="@string/alternatives" />
-		<activity
-			android:name="org.koitharu.kotatsu.settings.about.AppUpdateActivity"
-			android:label="@string/app_update_available" />
+
 		<activity
 			android:name="org.koitharu.kotatsu.tracker.ui.debug.TrackerDebugActivity"
 			android:label="@string/tracker_debug_info" />
@@ -289,9 +287,7 @@
 				<data android:mimeType="image/*" />
 			</intent-filter>
 		</activity>
-		<activity
-			android:name="org.koitharu.kotatsu.scrobbling.discord.ui.DiscordAuthActivity"
-			android:label="@string/discord" />
+
 
 		<service
 			android:name="androidx.work.impl.foreground.SystemForegroundService"
@@ -438,13 +434,7 @@
 				android:name="android.appwidget.provider"
 				android:resource="@xml/widget_recent" />
 		</receiver>
-		<receiver
-			android:name="org.koitharu.kotatsu.core.ErrorReporterReceiver"
-			android:exported="false">
-			<intent-filter>
-				<action android:name="${applicationId}.action.REPORT_ERROR" />
-			</intent-filter>
-		</receiver>
+
 
 		<meta-data
 			android:name="android.webkit.WebView.EnableSafeBrowsing"

@@ -15,7 +15,7 @@ import org.koitharu.kotatsu.core.prefs.AppSettings
 import org.koitharu.kotatsu.core.ui.BasePreferenceFragment
 import org.koitharu.kotatsu.core.util.ext.observe
 import org.koitharu.kotatsu.core.util.ext.withArgs
-import org.koitharu.kotatsu.scrobbling.discord.ui.DiscordAuthActivity
+
 
 @AndroidEntryPoint
 class DiscordSettingsFragment : BasePreferenceFragment(R.string.discord) {
@@ -97,9 +97,7 @@ class DiscordSettingsFragment : BasePreferenceFragment(R.string.discord) {
 		}
 
 		private fun openSignIn() {
-			activity?.run {
-				startActivity(Intent(this, DiscordAuthActivity::class.java))
-			}
+			// Discord RPC is disabled
 		}
 
 		companion object {
