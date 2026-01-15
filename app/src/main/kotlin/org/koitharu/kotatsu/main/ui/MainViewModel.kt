@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.plus
 import org.koitharu.kotatsu.core.exceptions.EmptyHistoryException
-import org.koitharu.kotatsu.core.github.AppUpdateRepository
+
 import org.koitharu.kotatsu.core.prefs.AppSettings
 import org.koitharu.kotatsu.core.prefs.observeAsFlow
 import org.koitharu.kotatsu.core.prefs.observeAsStateFlow
@@ -25,7 +25,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
 	private val historyRepository: HistoryRepository,
-	private val appUpdateRepository: AppUpdateRepository,
 	trackingRepository: TrackingRepository,
 	private val settings: AppSettings,
 	readingResumeEnabledUseCase: ReadingResumeEnabledUseCase,
@@ -42,8 +41,6 @@ class MainViewModel @Inject constructor(
 			started = SharingStarted.WhileSubscribed(5000),
 			initialValue = false,
 		)
-
-	val appUpdate = appUpdateRepository.observeAvailableUpdate()
 
 	val feedCounter = trackingRepository.observeUnreadUpdatesCount()
 		.withErrorHandling()
@@ -62,9 +59,6 @@ class MainViewModel @Inject constructor(
 	)
 
 	init {
-		launchJob {
-			appUpdateRepository.fetchUpdate()
-		}
 		launchJob(Dispatchers.Default) {
 			if (sourcesRepository.isSetupRequired()) {
 				onFirstStart.call(Unit)
