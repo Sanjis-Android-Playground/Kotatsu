@@ -9,7 +9,7 @@ import org.koitharu.kotatsu.core.model.TestMangaSource
 import org.koitharu.kotatsu.core.nav.router
 import org.koitharu.kotatsu.core.ui.BasePreferenceFragment
 import org.koitharu.kotatsu.settings.utils.SplitSwitchPreference
-import org.koitharu.workinspector.WorkInspector
+
 
 class DebugSettingsFragment : BasePreferenceFragment(R.string.debug), Preference.OnPreferenceChangeListener,
 	Preference.OnPreferenceClickListener {
@@ -32,10 +32,7 @@ class DebugSettingsFragment : BasePreferenceFragment(R.string.debug), Preference
 	}
 
 	override fun onPreferenceTreeClick(preference: Preference): Boolean = when (preference.key) {
-		KEY_WORK_INSPECTOR -> {
-			startActivity(WorkInspector.getIntent(preference.context))
-			true
-		}
+
 
 		KEY_TEST_PARSER -> {
 			router.openList(TestMangaSource, null, null)
@@ -66,7 +63,7 @@ class DebugSettingsFragment : BasePreferenceFragment(R.string.debug), Preference
 	private companion object {
 
 		const val KEY_LEAK_CANARY = "leak_canary"
-		const val KEY_WORK_INSPECTOR = "work_inspector"
+
 		const val KEY_TEST_PARSER = "test_parser"
 	}
 }

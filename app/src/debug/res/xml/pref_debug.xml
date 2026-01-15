@@ -8,10 +8,7 @@
 		android:persistent="false"
 		android:title="LeakCanary" />
 
-	<Preference
-		android:key="work_inspector"
-		android:persistent="false"
-		android:title="@string/wi_lib_name" />
+
 
 	<Preference
 		android:key="test_parser"
