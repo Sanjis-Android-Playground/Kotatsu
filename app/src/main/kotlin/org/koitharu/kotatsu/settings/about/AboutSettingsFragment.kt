@@ -12,8 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.combine
 import org.koitharu.kotatsu.BuildConfig
 import org.koitharu.kotatsu.R
-import org.koitharu.kotatsu.core.github.AppVersion
-import org.koitharu.kotatsu.core.github.VersionId
 import org.koitharu.kotatsu.core.github.isStable
 import org.koitharu.kotatsu.core.nav.router
 import org.koitharu.kotatsu.core.prefs.AppSettings
@@ -31,10 +29,10 @@ class AboutSettingsFragment : BasePreferenceFragment(R.string.about) {
 		findPreference<Preference>(AppSettings.KEY_APP_VERSION)?.run {
 			title = getString(R.string.app_version, BuildConfig.VERSION_NAME)
 		}
-		findPreference<SwitchPreferenceCompat>(AppSettings.KEY_UPDATES_UNSTABLE)?.run {
-			isEnabled = VersionId(BuildConfig.VERSION_NAME).isStable
-			if (!isEnabled) isChecked = true
-		}
+//			findPreference<SwitchPreferenceCompat>(AppSettings.KEY_UPDATES_UNSTABLE)?.run {
+//				isEnabled = VersionId(BuildConfig.VERSION_NAME).isStable
+//				if (!isEnabled) isChecked = true
+//			}
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,16 +43,15 @@ class AboutSettingsFragment : BasePreferenceFragment(R.string.about) {
 				findPreference<Preference>(AppSettings.KEY_APP_VERSION)?.isEnabled = isUpdateSupported && !isLoading
 
 			}
-		viewModel.onUpdateAvailable.observeEvent(viewLifecycleOwner, ::onUpdateAvailable)
+
 	}
 
 	override fun onPreferenceTreeClick(preference: Preference): Boolean {
 		return when (preference.key) {
 			AppSettings.KEY_APP_VERSION -> {
-				viewModel.checkForUpdates()
 				true
 			}
-
+			
 			AppSettings.KEY_LINK_WEBLATE -> {
 				openLink(R.string.url_weblate, preference.title)
 				true
@@ -81,13 +78,7 @@ class AboutSettingsFragment : BasePreferenceFragment(R.string.about) {
 		}
 	}
 
-	private fun onUpdateAvailable(version: AppVersion?) {
-		if (version == null) {
-			Snackbar.make(listView, R.string.no_update_available, Snackbar.LENGTH_SHORT).show()
-		} else {
-			startActivity(Intent(requireContext(), AppUpdateActivity::class.java))
-		}
-	}
+
 
 	private fun openLink(
 		@StringRes url: Int,

@@ -95,7 +95,7 @@ import org.koitharu.kotatsu.search.domain.SearchKind
 import org.koitharu.kotatsu.search.ui.MangaListActivity
 import org.koitharu.kotatsu.search.ui.multi.SearchActivity
 import org.koitharu.kotatsu.settings.SettingsActivity
-import org.koitharu.kotatsu.settings.about.AppUpdateActivity
+
 import org.koitharu.kotatsu.settings.override.OverrideConfigActivity
 import org.koitharu.kotatsu.settings.reader.ReaderTapGridConfigActivity
 import org.koitharu.kotatsu.settings.sources.auth.SourceAuthActivity
@@ -198,8 +198,6 @@ class AppRouter private constructor(
     }
 
     fun openBookmarks() = startActivity(AllBookmarksActivity::class.java)
-
-    fun openAppUpdate() = startActivity(AppUpdateActivity::class.java)
 
     fun openSuggestions() {
         startActivity(suggestionsIntent(contextOrNull() ?: return))
