@@ -1,7 +1,7 @@
-> [!IMPORTANT]
-> In light of recent challenges — including threating actions from Kakao Entertainment Corp and upcoming Google’s
-> [new sideloading policy](https://f-droid.org/ru/2025/10/28/sideloading.html) — we’ve made the difficult decision to shut down Kotatsu and end its support. We’re deeply grateful
-> to everyone who contributed and to the amazing community that grew around this project.
+# Kotatsu Personal Fork
+
+> [!NOTE]
+> This is a personal fork of Kotatsu for individual use. The original project has been discontinued, but this fork maintains the core functionality for personal manga reading needs.
 
 ---
 

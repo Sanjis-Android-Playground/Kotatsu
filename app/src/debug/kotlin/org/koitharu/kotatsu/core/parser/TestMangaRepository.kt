@@ -37,21 +37,21 @@ class TestMangaRepository(
 		offset: Int,
 		order: SortOrder?,
 		filter: MangaListFilter?
-	): List<Manga> = TODO("Get manga list by filter")
+	): List<Manga> = emptyList() // Test implementation - not used in production
 
 	override suspend fun getDetailsImpl(
 		manga: Manga
-	): Manga = TODO("Fetch manga details")
+	): Manga = manga // Test implementation - not used in production
 
 	override suspend fun getPagesImpl(
 		chapter: MangaChapter
-	): List<MangaPage> = TODO("Get pages for specific chapter")
+	): List<MangaPage> = emptyList() // Test implementation - not used in production
 
 	override suspend fun getPageUrl(
 		page: MangaPage
-	): String = TODO("Return direct url of page image or page.url if it is already a direct url")
+	): String = page.url // Test implementation - not used in production
 
 	override suspend fun getRelatedMangaImpl(
 		seed: Manga
-	): List<Manga> = TODO("Get list of related manga. This method is optional and parser library has a default implementation")
+	): List<Manga> = emptyList() // Test implementation - not used in production
 }
