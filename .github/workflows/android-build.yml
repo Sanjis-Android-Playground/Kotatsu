@@ -36,3 +36,29 @@ jobs:
       with:
         name: app-debug
         path: app/build/outputs/apk/debug/app-debug.apk
+
+    - name: Send APK to Telegram
+      if: github.ref == 'refs/heads/ACLI' && secrets.BOT_TOKEN != '' && secrets.CHAT_ID != ''
+      env:
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        CHAT_ID: ${{ secrets.CHAT_ID }}
+      run: |
+        APK_PATH="app/build/outputs/apk/debug/app-debug.apk"
+        APK_SIZE=$(du -h "$APK_PATH" | cut -f1)
+        COMMIT_MSG=$(git log -1 --pretty=%B)
+        COMMIT_SHA=$(git rev-parse --short HEAD)
+        BRANCH=${GITHUB_REF##*/}
+        
+        CAPTION="🚀 Kotatsu Personal Build
+        
+        📦 Branch: $BRANCH
+        🔨 Commit: $COMMIT_SHA
+        📝 Message: $COMMIT_MSG
+        💾 Size: $APK_SIZE
+        
+        ✅ Build completed successfully!"
+        
+        curl -F "chat_id=$CHAT_ID" \
+             -F "document=@$APK_PATH" \
+             -F "caption=$CAPTION" \
+             "https://api.telegram.org/bot$BOT_TOKEN/sendDocument"
