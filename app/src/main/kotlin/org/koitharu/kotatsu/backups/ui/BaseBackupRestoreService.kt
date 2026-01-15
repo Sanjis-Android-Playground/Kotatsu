@@ -74,7 +74,6 @@ abstract class BaseBackupRestoreService : CoroutineIntentService() {
 					.setBigText(title, message)
 					.setSmallIcon(android.R.drawable.stat_notify_error)
 				}
-			}
 
 			else -> {
 				notification
