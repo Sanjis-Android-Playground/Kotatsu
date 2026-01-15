@@ -96,9 +96,13 @@ abstract class CachingMangaRepository(
 			if (set.add(page.id)) {
 				result.add(page)
 			} else if (BuildConfig.DEBUG) {
-				Log.w(null, "Duplicate page: $page")
+				Log.w(TAG, "Duplicate page: $page")
 			}
 		}
 		return result
+	}
+
+	private companion object {
+		private const val TAG = "CachingMangaRepository"
 	}
 }
